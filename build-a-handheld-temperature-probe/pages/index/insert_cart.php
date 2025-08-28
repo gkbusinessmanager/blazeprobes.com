@@ -150,6 +150,14 @@ $product_id = wp_insert_post( $postarr, false );
 if( empty( get_post_meta( $product_id, '_sku', true ) ) ) {
 	update_post_meta( $product_id, '_sku', $prt );
 }
+	
+	// Assign product to category by slug
+	wp_set_object_terms( $product_id, array( 'handheld-temperature-probes', 'custom' ), 'product_cat' );
+	
+	// Set featured image (thumbnail)
+	$attachment_id = 218697;
+	update_post_meta( $product_id, '_thumbnail_id', $attachment_id );
+
 global $wpdb;
 $wpdb->close();
 	// connect to woocommerce DB
