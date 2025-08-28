@@ -120,6 +120,14 @@ if (isset($_REQUEST['calid'])) {
 			if( empty( get_post_meta( $product_id, '_sku', true ) ) ) {
 				update_post_meta( $product_id, '_sku', $prt );
 			}
+		
+		// Assign product to category by slug
+		wp_set_object_terms( $product_id, array( 'flexwire-temperature-probes', 'custom' ), 'product_cat' );
+		
+		// Set featured image (thumbnail)
+		$attachment_id = 218694;
+		update_post_meta( $product_id, '_thumbnail_id', $attachment_id );
+
 		global $wpdb;
 		$wpdb->close();
 
